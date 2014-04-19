@@ -1,0 +1,98 @@
+
+
+<%= form_for @customer, :html => {:multipart => true} do |f| %>
+  
+ 
+<% if @customer.errors.any? %>
+<h4>Customer not added</h4>
+<ul>
+<% @customer.errors.full_messages.each do |error| %>
+<li><%= error %></li>
+<% end %>
+</ul>
+<% end %>
+
+
+<div class='row'>
+<div class='span6'>
+<div class="string input optional stringish control-group" id="customer_code_input">
+<%= f.label :code %><div class="controls">
+<%= f.text_field :code, :disabled => true %>
+<span class="help-block">auto-generated</span>
+</div></div>
+</div>
+
+<%= f.fields_for :folios do |fo| %>
+<div class='span6'>
+<div class="string input optional stringish control-group">
+  <%= fo.label :no_of_shares %>
+  <%= fo.text_field :no_of_shares %>
+  </div></div>
+  
+<% end %>
+
+
+<div class='row'>
+<div class='span6'>
+<div class="string input optional stringish control-group" id="customer_first_name_input"><%= f.label :first_name %><div class="controls"><%= f.text_field :first_name %>
+
+</div></div>
+</div>
+
+<div class='span6'>
+<div class="string input optional stringish control-group" id="customer_last_name_input"><%= f.label :last_name %><div class="controls"><%= f.text_field :last_name %>
+</div></div>
+</div>
+</div>
+    
+    <%= f.label :dob %>
+    <%= f.date_select :dob, { :include_blank => true, :start_year => 1900, :end_year => 2014 } %>
+
+    <%= f.label :sex %>
+    <%= f.select :sex, options_for_select(%w[Male Female]), { :include_blank => true}  %>
+       
+    <%= f.label :addr %>
+    <%= f.text_area :addr, :id => "address", :cols => 5, :rows => 3 %>
+     
+
+<div class='row'>
+<div class='span6'>
+<div class="string input optional stringish control-group" id="customer_city_input"><%= f.label :city %><div class="controls"><%= f.text_field :city %>
+</div></div>
+</div>
+
+<div class='span6'>
+<div class="string input optional stringish control-group" id="customer_state_input"><%= f.label :state %><div class="controls"><%= f.text_field :state %>
+</div></div>
+</div>
+</div>
+
+<div class='row'>
+<div class='span6'>
+<div class="string input optional stringish control-group" id="customer_pincode_input"><%= f.label :pincode %><div class="controls"><%= f.text_field :pincode %>
+    </div></div>
+</div>
+
+<div class='span6'>
+  <div class="string input optional stringish control-group" id="customer_pan_input"><%= f.label :pan %><div class="controls"><%= f.text_field :pan %>
+</div></div>
+</div>
+
+
+<div class='row'>
+<div class='span6'>
+<div class="string input optional stringish control-group" id="customer_photo_input"><%= f.label :photo %><div class="controls"><%= f.file_field :image %>
+    </div></div>
+</div>
+
+<div class='span6'>
+  <div class="string input optional stringish control-group" id="customer_status_input"><%= f.label :status %><div class="controls"><%= f.text_field :status, :disabled => true  %>
+    <span class="help-block">auto-fill</span>
+</div></div>
+</div>
+
+           
+     <%= f.submit "Create Customer", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

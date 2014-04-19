@@ -1,0 +1,33 @@
+
+<%= form_for @savingsdeposit, :html => {:multipart => true} do |sa| %>
+
+ <%= sa.hidden_field :customer_id, :id => "real_customer_id" %>
+ <span class="help-block">Enter the customer name</span> 
+<%= autocomplete_field_tag 'throwaway_customer', '',
+          autocomplete_customer_first_name_savingsdeposits_path,
+          :size => 75, :id_element => '#real_customer_id' %> 
+
+<% if @savingsdeposit.errors.any? %>
+<h4>Savings account not created</h4>
+<ul>
+<% @savingsdeposit.errors.full_messages.each do |error| %>
+<li><%= error %></li>
+<% end %>
+</ul>
+<% end %>
+       
+	<%= sa.label :account_type %>
+  <%= sa.select :account_type, options_for_select(%w[SavingsDeposit]), { :include_blank => true} %>
+    
+  <%= sa.label :opened_on %>
+  <%= sa.text_field :opened_on, :disabled => true, :value => Date.today %>
+
+  <%= sa.label :current_balance %>
+  <%= sa.text_field :current_balance, :placeholder =>'0.00' %>  
+	  
+</div>
+     <%= sa.submit "Create Account", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

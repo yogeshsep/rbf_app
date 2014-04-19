@@ -1,0 +1,45 @@
+<style>
+h1
+{
+  color: rgb(144,16,16);
+}
+h3
+{
+  color: #008080;
+  font-style:italic;  
+}
+</style>
+
+<% if user_signed_in? %>
+<h3>Welcome <%= current_user.username %> you have successfully signed in</h3>
+<div class="row">
+  <div class="span10 offset10 action_bar">
+    <div>
+       <br><%= link_to"User Profile", home_show_path, class: "btn btn-primary" %> </br>
+    </div>
+  </div>
+</div>
+<% else %>
+
+<style>
+#header_id {display: none}
+</style>
+
+<section id="flashMsg">
+  <div class="alert alert-alert">You must sign in/sign up to access this page</div>
+</section>
+
+<h1> Ruby Benefit Fund</h1>
+<h3> Existing users can Sign in, New users do Sign up. </h3>
+ <table>  
+<tr>
+  <td><%= link_to "Sign in", new_user_session_path, class: "btn btn-primary", :method => :get %></td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td><%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary", :method => :get%></td>
+  </tr>
+  </table>
+<% end %>
+
+

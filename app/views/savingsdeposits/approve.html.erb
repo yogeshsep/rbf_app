@@ -1,0 +1,24 @@
+
+<table cellpadding = "5" cellspacing ="5">
+  <tr>        
+    <th>Customer</th>
+    <th>Current Balance</th>
+    <th>Transaction Date</th>
+    <th>Transaction Mode</th>    
+    <th>Amount</th>
+    <th>Particulars</th>   
+    <th>Approve</th>
+  </tr>
+  <% @savingsdeposit.savingsdeposittransactions.each do |sdts| %>
+    <tr>  
+      <td><%= "#{@savingsdeposit.customer.first_name} #{@savingsdeposit.customer.last_name}" %></td>    
+      <td><%= @savingsdeposit.current_balance %></td>
+      <td><%= sdts.transaction_date %></td>     
+      <td><%= link_to sdts.transaction_mode, savingsdeposittransaction_path(params[:id]) %></td>
+      <td><%= sdts.transaction_amount %></td>
+      <td><%= sdts.particulars %></td>  
+      <td><%= link_to "Approve", '#', :method => 'get', class: "btn btn-small btn-warning" %></td>       
+    </tr>
+  <% end %>
+</table>
+</div>

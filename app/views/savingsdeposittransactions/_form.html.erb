@@ -1,0 +1,44 @@
+
+<%= form_for @savingsdeposittransaction do |sdt| %>
+
+<%= sdt.hidden_field:savingsdeposit_id, :value => params[:id] %>
+
+<% if @savingsdeposittransaction.errors.any? %>
+<h4>Transaction Failure</h4>
+<ul>
+<% @savingsdeposittransaction.errors.full_messages.each do |error| %>
+<li><%= error %></li>
+<% end %>
+</ul>
+<% end %> 
+     
+    
+    <%= sdt.label :current_balance %>
+    <%= sdt.text_field :current_balance, :disabled => true, :value => @savingsdeposittransaction.savingsdeposit.current_balance %>
+    
+       
+	<%= sdt.label :transaction_date %>
+    <%= sdt.text_field :transaction_date, :disabled => true, :value => Date.today  %>
+    
+    <%= sdt.label :transaction_amount %>
+    <%= sdt.text_field :transaction_amount, :placeholder =>'0.00' %>
+
+    <%= sdt.label :transaction_mode %>
+    <%= sdt.select :transaction_mode, options_for_select(%w[Credit Debit]), { :include_blank => true} %>
+
+    <%= sdt.label :transaction_type %>
+    <%= sdt.select :transaction_type, options_for_select(%w[Cash Bank Transfer]), { :include_blank => true} %> 
+
+    <%= sdt.label :particulars %>
+    <%= sdt.text_field :particulars %>
+
+    <%= sdt.label :comments %>
+    <%= sdt.text_field :comments %>
+	  
+</div>  
+
+     <%= sdt.submit "Submit Transaction", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

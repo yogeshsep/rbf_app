@@ -1,0 +1,20 @@
+
+<table cellpadding = "5" cellspacing ="5">
+  <tr>        
+    <th>Customer Name</th>
+    <th>Account Type</th>    
+    <th>Account Opened On</th>
+    <th>Customer Status</th>
+    <th>Current Balance</th>
+    
+  </tr>
+  <% @savingsdeposit.each do |sd| %>
+    <tr>      
+      <td><%= link_to "#{sd.customer.first_name} #{sd.customer.last_name}", approve_savingsdeposit_path(sd)%></td>
+      <td><%= sd.account_type%></td>     
+      <td><%= sd.opened_on%></td>
+      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= sd.customer.status %></span></td>
+      <td><%= sd.current_balance%></td>  
+    </tr>
+  <% end %>
+</table>

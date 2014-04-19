@@ -1,0 +1,55 @@
+
+<h2>Customers </h2>
+
+<div> <%= link_to(new_customer_path, class: "btn btn-primary") do %>
+      <i class="icon-user icon-white"> </i> New Customer
+      <% end %>
+     <%= link_to "Open savings account", savingsdeposits_new_path, class: "btn btn-primary" %> </div> </br>
+
+<%= form_tag customers_path, :method => 'get'  do %>
+   <%= text_field_tag :search, params[:search], :placeholder => "Name or Code" %>
+   <%= submit_tag "Search", class: "btn btn-primary", :first_name => nil  %>
+ <% end %>
+
+<div class="alert alert-info">Displaying customers</div>
+
+<table cellpadding = "5" cellspacing ="5">
+  <tr>
+    <th>Customer Code</th>
+    <th>Folio#</th>
+    <th>Name</th>
+    <th>Sex</th>    
+    <th>City</th>    
+    <th>State</th>
+    <th>Image</th>
+    <th>Status</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    
+  </tr>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.code%></td>
+      <td><% for folio in customer.folios %><%= link_to folio.folio_number , folios_path %><% end %></td>
+      <td><%= link_to "#{customer.first_name} #{customer.last_name}" , customer_path(customer)%></td>
+      <td><%= customer.sex%></td>
+      <td><%= customer.city%></td>
+      <td><%= customer.state%></td> 
+      <td><%= image_tag customer.image, :size => "50x50", class: "img-rounded"%></td> 
+      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= customer.status %></span></td>    
+
+
+      <td><%= link_to(edit_customer_path(customer), class: "btn btn-primary") do %>
+      <i class="icon-pencil icon-white"> </i> Edit
+      <% end %></td>
+
+      <td><%= link_to(customer_path(customer), class: "btn btn-danger", method: :delete, confirm: "Are You Sure?") do %>
+      <i class="icon-trash icon-white"> </i> Delete
+      <% end %></td>    
+
+      
+    </tr>
+  <% end %>
+</table>
+<br />
+

@@ -1,0 +1,28 @@
+
+<h2>Folios</h2>
+
+
+<table cellpadding = "5" cellspacing ="5">
+  <tr>    
+    <th>Folio#</th>
+    <th>CustomerName</th>
+    <th>CustomerStatus</th>
+    <th>Folio_allocation_date</th>
+    <th>No_of_Shares</th> 
+    <th>Details</th>   
+    
+  </tr>
+  <% @folio.each do |folio| %>
+    <tr>
+      <td><%= folio.folio_number%></td>
+      <td><%= "#{folio.customer.first_name} #{folio.customer.last_name}"%></td>
+      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= folio.customer.status %></span></td>
+      <td><%= folio.folio_allocation_date%></td>
+      <td><%= folio.no_of_shares%></td>  
+      <td><%= link_to(folio_path(folio), class: "btn btn-small btn-primary") do %>
+           Folio details <% end %>
+</td>            
+    </tr>
+  <% end %>
+</table>
+<br />

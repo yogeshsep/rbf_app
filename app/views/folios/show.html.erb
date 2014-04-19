@@ -1,0 +1,39 @@
+<br />
+<h1><%= link_to "Folios", folios_path %></h1>
+<br />
+
+
+<h5><strong>Customer name</strong> : <%= "#{@folio.customer.first_name} #{@folio.customer.last_name}" %></h5>
+<h5><strong>Address</strong> : <%= @folio.customer.addr %>
+<hr>
+   
+
+<div class="row">
+   <div class="span6 customer_left_span_properties">
+   <h4><span class="customer">Folio details</span></h4>
+   <div class="row">
+   <div class="span3">
+   <strong>Folio Number</strong>
+   </div>
+   <div class="span3"> : <%= @folio.folio_number %></div>
+   </div>
+   
+   <div class="row">
+   <div class="span3">
+   <strong>No of shares</strong>
+   </div>
+   <div class="span3"> : <%= @folio.no_of_shares %></div>
+   </div>
+
+  
+   <div class="row">
+   <div class="span3">
+   <strong>folio allocation date</strong>
+   </div>
+   <div class="span3"> : <%= @folio.folio_allocation_date %></div>
+   </div>
+   </div>
+   </div>
+   </div>
+</hr>
+</div>

@@ -1,0 +1,65 @@
+
+<h3><span class = "customer"> <%= @customer.code %> </span></br>   
+
+	<div class = "span6 offset6">
+      <%= link_to(edit_customer_path(@customer), class: "btn btn-primary") do %>
+   <i class="icon-pencil icon-white"> </i> Edit
+   <% end %>
+   <%= link_to(customer_path(@customer), class: "btn btn-danger", method: :delete, confirm: "Are You Sure?") do %>
+   <i class="icon-trash icon-white"> </i> Delete
+   <% end %>       
+    </div>
+
+    <div><%= "#{@customer.first_name} #{@customer.last_name}" %> </div></h3>
+ <h5><div><%= "Age of customer : #{Time.now.year - @customer.dob.year}" %></div> </br>
+ 	<%= "#{@customer.addr}" %> </br>
+ 	<%= "#{@customer.city}" %> </h5> 
+
+   <div><%= image_tag @customer.image, :size => "50x50", class: "img-polaroid"%></div> </br>   
+
+<hr>
+   <div class="row">
+   <div class="span6">
+   <h4><span class="customer_show_page_header">Customer Status</span></h4>
+   <div class="row">
+   <div class="span3">Status</div>
+   <div id="status" class="span3">
+   <span class="icon icon-thumbs-down"></span>   
+  	<span class="label label-warning"> pending </span>
+	</div>
+   </div>
+   </div>
+   </div>
+</hr>
+<hr>
+   <div class="row">
+   <div class="span6">
+   <h4><span class="customer_show_page_header">Customer Details</span></h4>
+   <div class="row">
+   <div class="span3">Date of birth</div>
+   <div class="span3">  <%= @customer.dob %> </div>
+   </div>
+   <div class="row">
+   <div class="span3">Gender</div>
+   <div class="span3"> <%= @customer.sex %> </div>
+   </div>
+   </div>
+ </hr>
+
+   <div class="span6">
+   <h4><span class="customer_show_page_header">ID details</span></h4>
+   <div class="row">
+   <div class="span3">PAN</div>
+   <div class="span3"> <%= @customer.pan%> </div>
+   </div>
+   </div>
+   <br></br>
+	</div>
+	</br>
+	<%= link_to"Back", customers_path, class: "btn btn-primary" %>
+	<%= link_to(edit_customer_path(@customer), class: "btn btn-primary") do %>
+   <i class="icon-pencil icon-white"> </i> Edit
+   <% end %>
+   <%= link_to(customer_path(@customer), class: "btn btn-danger", method: :delete, confirm: "Are You Sure?") do %>
+   <i class="icon-trash icon-white"> </i> Delete
+   <% end %>       

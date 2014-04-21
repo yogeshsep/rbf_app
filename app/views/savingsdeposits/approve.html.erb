@@ -14,7 +14,7 @@
       <td><%= "#{@savingsdeposit.customer.first_name} #{@savingsdeposit.customer.last_name}" %></td>    
       <td><%= @savingsdeposit.current_balance %></td>
       <td><%= sdts.transaction_date %></td>     
-      <td><%= link_to sdts.transaction_mode, savingsdeposittransaction_path(params[:id]) %></td>
+      <td><%= link_to sdts.transaction_mode, savingsdeposittransaction_path(sdts) %></td>
       <td><%= sdts.transaction_amount %></td>
       <td><%= sdts.particulars %></td>  
       <td><%= link_to "Approve", '#', :method => 'get', class: "btn btn-small btn-warning" %></td>       

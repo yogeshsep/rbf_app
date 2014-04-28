@@ -16,7 +16,7 @@ class SavingsdeposittransactionsController < ApplicationController
   def create
   	@savingsdeposittransaction = Savingsdeposittransaction.new(params[:savingsdeposittransaction])
       if @savingsdeposittransaction.save
-        flash[:success] = "Transaction created and submitted for Manager approval"
+        flash[:success] = "Transaction made and awaiting for Manager approval"
         redirect_to savingsdeposits_path
       else
         flash[:error] = "Cannot do transaction"  
@@ -32,7 +32,7 @@ class SavingsdeposittransactionsController < ApplicationController
     @savingsdeposittransaction = Savingsdeposittransaction.find(params[:id])
 
       if @savingsdeposittransaction.update_attributes(params[:savingsdeposittransaction])
-        flash[:success] = "Updated your transaction and submitted for Manager approval"
+        flash[:success] = "Updated your transaction and awaiting for Manager approval"
         redirect_to savingsdeposittransaction_path(@savingsdeposittransaction)
       else
         flash[:alert] ="Fill the necessary fields"
@@ -43,8 +43,15 @@ class SavingsdeposittransactionsController < ApplicationController
   def destroy
     @savingsdeposittransaction = Savingsdeposittransaction.find(params[:id])
     @savingsdeposittransaction.destroy
-    flash[:notice] = "Savings Deposit Transaction Canceled"
+    flash[:notice] = "Savings deposit transaction get Canceled"
     redirect_to savingsdeposits_path    
   end 
+
+  def approve
+    @savingsdeposittransaction = Savingsdeposittransaction.find(params[:id])
+    @savingsdeposittransaction.update_attributes!(:status => 'approved')
+    flash[:success] = "Approved your transaction"
+    redirect_to savingsdeposits_path
+  end
 
 end

@@ -7,14 +7,12 @@
     <%= link_to"Back", savingsdeposits_path, class: "btn btn-primary" %>
     <%= link_to"Edit Account", edit_savingsdeposit_path, class: "btn btn-primary" %>
     <%= link_to "Close Account",savingsdeposit_path,class: "btn btn-danger",
-      method: :delete, confirm: "You want to close this account?" %>
-	
-
+      method: :delete, confirm: "You want to close this account?" %>	
     <% if current_user and current_user.Role == "Mgr" %>
-       <%= content_tag(:p, "Manager can do transaction!", :id=>"Mgrtxt") if current_user.Role == "Mgr" %>
+       <%= content_tag(flash[:success] = "Manager only add transaction!") if current_user.Role == "Mgr" %>
        <%= link_to "Add transaction", new_savingsdeposittransaction_path(:id=>@savingsdeposit.id), class: "btn btn-primary" %>
     <% else %>
-       <%= content_tag(:p, "Data Entry Operator cannot do transaction!", :id=>"Deotxt") if current_user.Role == "Deo" %>       
+       <%= content_tag(flash[:error] = "Access Denied for DEO!") if current_user.Role == "Deo" %>  
     <% end %>     
     </div> 
   </div>
@@ -68,7 +66,12 @@
       <td><%= link_to sdts.transaction_mode, savingsdeposittransaction_path(sdts) %></td>
       <td><%= sdts.transaction_amount %></td>
       <td><%= sdts.particulars %></td>
-      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= sdts.status %></span></td>      
+      <% if sdts.status == 'Pending' %>
+      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= sdts.status %></span></td>
+      <% else %>
+      <td><span class="icon icon-thumbs-up"></span><span class="label label-success"><%= sdts.status %></span>
+      </td>
+      <% end %>
     </tr>
   <% end %>
 </table>

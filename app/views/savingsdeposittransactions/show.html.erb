@@ -2,15 +2,18 @@
 <h3>Savings Deposit Transaction</h3>
 
 <div class="row">
-  <div class="span6 offset6 action_bar">
-    <div>
-     
+  <div>     
     <%= link_to"Back", savingsdeposits_path, class: "btn btn-primary" %>
     <%= link_to"Edit Transaction", edit_savingsdeposittransaction_path, class: "btn btn-primary" %>
     <%= link_to "Delete Transaction", savingsdeposits_path, class: "btn btn-danger",
-      method: :delete, confirm: "You want to delete current transaction?" %>	
-        
-    </div> 
+      method: :delete, confirm: "You want to delete current transaction?" %>
+    <% if current_user and current_user.Role == "Mgr" %>
+       <%= content_tag(flash[:success] = "Manager only approve the transactions!") if current_user.Role == "Mgr" %>
+    <%= form_for @savingsdeposittransaction, url: approve_savingsdeposittransaction_path(@savingsdeposittransaction), :html => { :method => :put } do |f| %>
+      <%= f.submit "approve", class: "btn btn-warning" %><% end %>
+      <% else %>
+       <%= content_tag(flash[:error] = "Access Denied for DEO!" ) if current_user.Role == "Deo" %> 
+    <% end %>
   </div>
 </div>
 </br>
@@ -22,20 +25,22 @@
     <th>Transaction Type</th>
     <th>Status</th>    
     <th>Transaction Amount</th>    
-    
   </tr>
       <tr>      
       <td><%= @savingsdeposittransaction.transaction_date %></td>
       <td><%= @savingsdeposittransaction.transaction_mode %></td>      
       <td><%= @savingsdeposittransaction.transaction_type %></td>
-      <td><span class="label label-warning"> <%= @savingsdeposittransaction.status %> </span></td>
+      <% if @savingsdeposittransaction.status == 'Pending' %>
+      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= @savingsdeposittransaction.status %></span></td>
+      <% else %>
+      <td><span class="icon icon-thumbs-up"></span><span class="label label-success"><%= @savingsdeposittransaction.status %></span>
+      </td>
+      <% end %>
       <td><%= @savingsdeposittransaction.transaction_amount %></td>          
 
     </tr>  
 </table>
 <br/>
-
-
 
 <div class="row">
   <div class="span4">

@@ -38,7 +38,12 @@
       <td><%= link_to "#{sd.customer.first_name} #{sd.customer.last_name}", savingsdeposit_path(sd)%></td>
       <td><%= sd.account_type%></td>     
       <td><%= sd.opened_on%></td>
-      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= sd.customer.status %></span></td>
+      <% if sd.status == 'Pending' %>
+      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= sd.status %></span></td>
+      <% else %>
+      <td><span class="icon icon-thumbs-up"></span><span class="label label-success"><%= sd.status %></span>
+      </td>
+      <% end %>
       <td><%= sd.current_balance%></td>  
     </tr>
   <% end %>

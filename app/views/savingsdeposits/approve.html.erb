@@ -7,7 +7,7 @@
     <th>Transaction Mode</th>    
     <th>Amount</th>
     <th>Particulars</th>   
-    <th>Approve</th>
+    <th>Status</th>
   </tr>
   <% @savingsdeposit.savingsdeposittransactions.each do |sdts| %>
     <tr>  
@@ -17,7 +17,9 @@
       <td><%= link_to sdts.transaction_mode, savingsdeposittransaction_path(sdts) %></td>
       <td><%= sdts.transaction_amount %></td>
       <td><%= sdts.particulars %></td>  
-      <td><%= link_to "Approve", '#', :method => 'get', class: "btn btn-small btn-warning" %></td>       
+      <td><%= form_for @savingsdeposit, url: activate_savingsdeposit_path(@savingsdeposit), :html => { :method => :put } do |f| %>
+      <%= f.submit "approve", class: "btn btn-small btn-warning" %>
+      <% end %></td>
     </tr>
   <% end %>
 </table>

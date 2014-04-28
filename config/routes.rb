@@ -10,11 +10,14 @@ RbfApp::Application.routes.draw do
   
   resources :savingsdeposits do
     get :autocomplete_customer_first_name, :on => :collection
-    get :approve, :on => :member   
+    get :approve, :on => :member
+    put :activate, :on => :member   
     get :pending, :on => :collection 
   end
 
-  resources :savingsdeposittransactions
+  resources :savingsdeposittransactions do
+    put :approve, :on => :member
+  end
  
   match 'dashboard' => 'home#dashboard'
 
@@ -26,6 +29,8 @@ RbfApp::Application.routes.draw do
   get "savingsdeposittransactions/update"
 
   get "savingsdeposittransactions/destroy"
+
+  get "savingsdeposittransactions/approve"  
 
 
   get "savingsdeposits/new"
@@ -39,6 +44,8 @@ RbfApp::Application.routes.draw do
   get "savingsdeposits/pending"
 
   get "savingsdeposits/approve"
+
+  get "savingsdeposits/activate"
 
   get "home/show"
 

@@ -6,15 +6,19 @@
     <th>Account Opened On</th>
     <th>Customer Status</th>
     <th>Current Balance</th>
+    <th>Approve</th>
     
   </tr>
   <% @savingsdeposit.each do |sd| %>
+  <% if sd.status == 'Pending' %>
     <tr>      
-      <td><%= link_to "#{sd.customer.first_name} #{sd.customer.last_name}", approve_savingsdeposit_path(sd)%></td>
+      <td><%=  "#{sd.customer.first_name} #{sd.customer.last_name}" %></td>
       <td><%= sd.account_type%></td>     
       <td><%= sd.opened_on%></td>
-      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= sd.customer.status %></span></td>
-      <td><%= sd.current_balance%></td>  
+      <td><span class="icon icon-thumbs-down"></span><span class="label label-warning"><%= sd.status %></span></td>
+      <td><%= sd.current_balance%></td> 
+      <td><%= link_to "Awaiting approval", approve_savingsdeposit_path(sd), class: "btn btn-small btn-warning" %></td> 
     </tr>
+    <% end %>
   <% end %>
 </table>

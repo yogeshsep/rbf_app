@@ -12,7 +12,7 @@ class SavingsdepositsController < ApplicationController
 	def create
     @savingsdeposit = Savingsdeposit.new(params[:savingsdeposit])
       if @savingsdeposit.save
-        flash[:success] = "Successfully created savingsdeposit account!"
+        flash[:success] = "Savingsdeposit account opened successfully!"
         redirect_to savingsdeposits_path
       else
         flash[:error] = "Cannot open savingsdeposit account"  
@@ -61,9 +61,16 @@ class SavingsdepositsController < ApplicationController
   end
 
   def approve
-    @savingsdeposit = Savingsdeposit.find(params[:id])
+    @savingsdeposit = Savingsdeposit.find(params[:id])    
     @customer = Customer.all
     @savingsdeposittransactions = Savingsdeposittransaction.all
+  end
+
+  def activate
+    @savingsdeposit = Savingsdeposit.find(params[:id])
+    @savingsdeposit.update_attributes!(:status => 'approved')
+    flash[:success] = "Approved your savingsdeposit account"
+    redirect_to savingsdeposits_path
   end
 
 end

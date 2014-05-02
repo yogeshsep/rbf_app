@@ -1,11 +1,10 @@
 
 <table cellpadding = "5" cellspacing ="5">
   <tr>        
-    <th>Customer</th>
+    <th>Customer Name</th>
     <th>Current Balance</th>
     <th>Transaction Date</th>
-    <th>Transaction Mode</th>    
-    <th>Amount</th>
+    <th>Transaction Mode</th>
     <th>Particulars</th>   
     <th>Status</th>
   </tr>
@@ -15,7 +14,6 @@
       <td><%= @savingsdeposit.current_balance %></td>
       <td><%= sdts.transaction_date %></td>     
       <td><%= link_to sdts.transaction_mode, savingsdeposittransaction_path(sdts) %></td>
-      <td><%= sdts.transaction_amount %></td>
       <td><%= sdts.particulars %></td>  
       <td><%= form_for @savingsdeposit, url: activate_savingsdeposit_path(@savingsdeposit), :html => { :method => :put } do |f| %>
       <%= f.submit "approve", class: "btn btn-small btn-warning" %>

@@ -1,25 +1,14 @@
 <style>
-h1
-{
-  color: rgb(144,16,16);
-}
 h3
 {
   color: #008080;
 }
 </style>
 
-<h1>Ruby Benefit Fund</h1></br>
-<h3><p>	You have successfully registered.</br>
-Now you can sign in</p></h3>
-
 
 <% if user_signed_in? %>
 
-<br><%= link_to"User Profile", home_show_path, class: "btn btn-primary" %> </br>
-<br><%= link_to"Customers", customers_path, class: "btn btn-primary" %> </br>
-<br><%= link_to "Sign Out", destroy_user_session_path, class: "btn btn-primary", :method => :delete %></br>
-
+<h3><p><i>	You have successfully registered in our Ruby Benefit Fund.</i></p></h3>
 
 <% else %>
  <table>  

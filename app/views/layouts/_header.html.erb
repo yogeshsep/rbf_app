@@ -20,19 +20,28 @@
         </li>  
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Shares
-          <b class="caret"></b></a>
-             <ul class="dropdown-menu">
-              </li> <a href="/folios" >Folios</a> </li>
-             </ul> 
-        </ul>                         
-          <% if @customers %>
-          <div align = "right"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></div>
-          <% elsif @savingsdeposits %>
-          <div align = "right"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></div>
-          <% else @savingsdeposittransactions %>
-          <div align = "right"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></div>
-          <% end %> 
-        <% end %>
+          <b class="caret"></b>
+        </a>
+          <ul class="dropdown-menu">
+            </li> <a href="/folios" >Folios</a>
+          </li>
+          </ul>
+        </ul>           
+
+      <ul class="nav pull-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user icon-white"> </i> <%= current_user.Role %>
+          <b class="caret"></b>
+        </a>
+          <ul class="dropdown-menu">            
+            </li> <%= link_to "Profile", home_show_path %>            
+          </li>
+          <li class="divider"></li>          
+            </li> <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+          </li>
+          </ul>
+        </ul>    
+        <% end %>        
     </div>
   </div>
 </header>

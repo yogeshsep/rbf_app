@@ -1,13 +1,10 @@
-<style>
-#header_id {display: none}
-h2
-{
-  color: rgb(144,16,16);
-}
-</style>
 
+<div class="container"> 
 
-<h2>Sign in</h2>
+<div class="offset3 span6">
+<h3 class="sign_in_label">Sign in</h3>
+<div class="signin">
+<div id="sign_in">
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
@@ -15,8 +12,8 @@ h2
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
-
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
-
+  <% end %>
+     <button class="btn" type="submit" name="button">Sign in</button> </br>
+</div>
+</div>
 <%= render "devise/shared/links" %>

@@ -14,4 +14,6 @@ class User < ActiveRecord::Base
   
   # attr_accessible :title, :body 
 
+  validates :Role, presence: true
+
 end

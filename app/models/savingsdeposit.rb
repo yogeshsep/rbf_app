@@ -26,6 +26,6 @@ class Savingsdeposit < ActiveRecord::Base
 
     validates :account_type, presence: true    
 
-    validates :current_balance, numericality: { greater_than: 100, presence: true }
+    validates :current_balance, numericality: { greater_than_or_equal_to: 100, presence: true }
         
 end

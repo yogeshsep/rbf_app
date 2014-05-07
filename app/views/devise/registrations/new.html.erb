@@ -1,10 +1,13 @@
+<style>
+#header_id {display: none}
+h2
+{
+  color: rgb(144,16,16);
+}
+</style>
 
-<div class="container"> 
 
-<div class="offset3 span6">
-<h3 class="sign_up_label", align = "center">Sign up</h3>
-<div class="border-form-div">
-<div id="sign_up">
+<h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -22,10 +25,9 @@
   <%= f.password_field :password_confirmation %></div>
 
   <div><%= f.label :Role %><br />
-  <%= f.collection_select :Role, User::ROLES, :to_s, :humanize, { :include_blank => true} %></div></br>
+  <%= f.select :Role, options_for_select(%w[Mgr Deo]), { :include_blank => true} %></div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>
-</div>
-</div>
+
 <%= render :partial => "devise/shared/links" %>

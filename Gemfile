@@ -5,13 +5,13 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.16'
 gem 'bootstrap-sass', '2.1'
 gem 'jquery-rails', '2.0.2'
-gem 'will_paginate', '3.0.3'
-gem 'bootstrap-will_paginate', '0.0.6'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'devise'
 gem 'rails3-jquery-autocomplete'
 gem 'cancancan', '~> 1.7'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
 
 
 

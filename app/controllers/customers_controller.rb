@@ -45,8 +45,8 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.all
-    #@customers = Customer.paginate(page: params[:page])
     @customers = Customer.search(params[:search], params[:id])
+    @customers = Customer.all
+
   end
 end

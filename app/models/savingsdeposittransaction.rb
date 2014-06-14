@@ -1,19 +1,6 @@
 class Savingsdeposittransaction < ActiveRecord::Base
 
-  belongs_to :savingsdeposit
-
-  after_save :calculate_current_balance
-
-  def calculate_current_balance
-    if self.transaction_mode == 'Credit'
-      savingsdeposit.current_balance += self.transaction_amount
-    elsif self.transaction_mode == 'Debit'
-      savingsdeposit.current_balance -= self.transaction_amount
-    else
-      :savingsdeposit
-    end
-    savingsdeposit.save
-  end
+  belongs_to :savingsdeposit 
 
 
   attr_accessor :current_balance

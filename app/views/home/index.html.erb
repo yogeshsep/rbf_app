@@ -4,9 +4,15 @@ h3
   color: #008080;
   font-style:italic;  
 }
+body{
+padding-top: 60px;
+background: url(/assets/welcome05.jpg) no-repeat;
+background-position: center right;
+background-size: 50%;
+}
 </style>
 <% if user_signed_in? %>
-<h3>Welcome <%= current_user.username %> you have successfully signed in</h3>
+<h3><%= current_user.username %> you have successfully signed in</h3>
 <% else %>
 <style>
 #header_id {display: none}

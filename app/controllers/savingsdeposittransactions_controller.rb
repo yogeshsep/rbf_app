@@ -24,7 +24,7 @@ class SavingsdeposittransactionsController < ApplicationController
       end
   end
 
-   def edit
+  def edit
     @savingsdeposittransaction = Savingsdeposittransaction.find(params[:id])
   end
 
@@ -49,6 +49,14 @@ class SavingsdeposittransactionsController < ApplicationController
 
   def approve
     @savingsdeposittransaction = Savingsdeposittransaction.find(params[:id])
+     if @savingsdeposittransaction.transaction_mode == 'Credit'
+      @savingsdeposittransaction.savingsdeposit.current_balance += @savingsdeposittransaction.transaction_amount
+    elsif @savingsdeposittransaction.transaction_mode == 'Debit'
+      @savingsdeposittransaction.savingsdeposit.current_balance -= @savingsdeposittransaction.transaction_amount
+    else
+      :savingsdeposit
+    end
+    @savingsdeposittransaction.savingsdeposit.save
     @savingsdeposittransaction.update_attributes!(:status => 'approved')
     flash[:success] = "Approved your transaction"
     redirect_to savingsdeposits_path
